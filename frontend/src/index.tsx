@@ -1,12 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import './assets/styles/main.scss';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const rootElement = document.getElementById('root');
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+let render = () => {
+    const App = require('./containers/App').App;
+    ReactDOM.render(
+        <App/>,
+        rootElement
+    );
+};
+
+render();
+
+if (module.hot) {
+    const renderApp = render;
+    const renderError = (error: any) => {
+        const RedBox = require('redbox-react');
+        ReactDOM.unmountComponentAtNode(rootElement as Element);
+        ReactDOM.render(<RedBox error={error}/>, rootElement);
+    };
+
+    render = () => {
+        try {
+            renderApp();
+        } catch (error) {
+            renderError(error);
+        }
+    };
+
+    module.hot.accept('./containers/App', () => {
+        setTimeout(render);
+    });
+}
