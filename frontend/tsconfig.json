@@ -1,25 +1,40 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "strictFunctionTypes": false,
+    "module": "commonjs",
+    "target": "es5",
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "jsx": "react",
+    "paths": {
+      "@store/*": [
+        "store/*"
+      ],
+      "@store": [
+        "store/index"
+      ],
+      "@models": [
+        "models/index"
+      ]
+    }
   },
   "include": [
-    "src"
+    "./src/**/*",
+    "./typings/**/*",
+    "./public/**/*"
   ]
 }
