@@ -4,25 +4,29 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.privalou</groupId>
-    <artifactId>shelter-parent</artifactId>
+    <artifactId>parent</artifactId>
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.8.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.2.0.RELEASE</version>
+        <relativePath/>
     </parent>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <tacocloud.version>${project.version}</tacocloud.version>
+        <parent.version>${project.version}</parent.version>
     </properties>
 
     <modules>
-        <module>shelter-root</module>
+        <module>root</module>
+        <module>domain</module>
+        <module>data</module>
+        <module>security</module>
+        <module>api</module>
     </modules>
 
 </project>
