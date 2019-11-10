@@ -5,9 +5,9 @@ import './assets/styles/main.scss';
 const rootElement = document.getElementById('root');
 
 let render = () => {
-    const App = require('./pages/app/App').App;
+    const Root = require('./pages/Root').Root;
     ReactDOM.render(
-        <App/>,
+        <Root/>,
         rootElement
     );
 };
