@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Redirect, Route, Router, Switch, withRouter} from 'react-router-dom';
+import {Redirect, Route, Router, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getAlert, Thunks as appThunks} from '@store/alerts';
 
@@ -23,7 +23,7 @@ class AppComponent extends Component<Props, State> {
     constructor(props) {
         super(props);
 
-        history.listen((location, action) => {
+        history.listen(() => {
             this.props.clearAlerts();
         });
     }
@@ -34,8 +34,11 @@ class AppComponent extends Component<Props, State> {
             <div className="jumbotron">
                 <div className="container">
                     <div className="col-sm-8 col-sm-offset-2">
-                        {alert && alert.message &&
-                        <div className={`alert ${alert.type}`}>{alert.message}</div>
+                        {
+                            alert && alert.message &&
+                            <div className={`alert ${alert.type}`}>
+                                {alert.message}
+                            </div>
                         }
                         <Router history={history}>
                             <Switch>

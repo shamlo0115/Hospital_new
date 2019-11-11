@@ -1,6 +1,5 @@
 import {Dispatch} from 'redux';
 import {ActionsUnion, createAction} from '@store/actions-helpers';
-import {AlertItem} from "@models";
 
 export const CLEAR = '[APP] CLEAR';
 export const ERROR = '[APP] ERROR';
@@ -8,8 +7,8 @@ export const SUCCESS = '[APP] SUCCESS';
 
 export const Actions = {
     clearAlerts: () => createAction(CLEAR),
-    success: (response: AlertItem) => createAction(SUCCESS, response),
-    error: (response: AlertItem) => createAction(ERROR, response),
+    success: (message: string) => createAction(SUCCESS, message),
+    error: (message: string) => createAction(ERROR, message),
 };
 
 export const Thunks = {
@@ -20,20 +19,12 @@ export const Thunks = {
     },
     success: (message: string) => {
         return (dispatch: Dispatch) => {
-            const response: AlertItem = {
-                type: 'SUCCESS',
-                message: message,
-            };
-            dispatch(Actions.success(response))
+            dispatch(Actions.success(message))
         }
     },
     error: (message: string) => {
         return (dispatch: Dispatch) => {
-            const response: AlertItem = {
-                type: 'ERROR',
-                message: message,
-            };
-            dispatch(Actions.error(response))
+            dispatch(Actions.error(message))
         }
     }
 };
