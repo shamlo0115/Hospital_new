@@ -5,9 +5,9 @@ import './assets/styles/main.scss';
 const rootElement = document.getElementById('root');
 
 let render = () => {
-    const App = require('./containers/App').App;
+    const Root = require('./pages/Root').Root;
     ReactDOM.render(
-        <App/>,
+        <Root/>,
         rootElement
     );
 };
@@ -30,7 +30,7 @@ if (module.hot) {
         }
     };
 
-    module.hot.accept('./containers/App', () => {
+    module.hot.accept('./pages/app/App', () => {
         setTimeout(render);
     });
 }
