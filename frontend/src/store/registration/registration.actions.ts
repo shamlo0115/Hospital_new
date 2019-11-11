@@ -1,7 +1,7 @@
 import {ActionsUnion, createAction} from '@store/actions-helpers';
 import {Dispatch} from "redux";
 import {User} from "@models";
-import {Actions as alertActions, Thunks as alertThunks} from '@store/alerts';
+import {Actions as alertActions} from '@store/alerts';
 import {Thunks as authenticationThunks} from '@store/authentication';
 import {history} from "@store";
 import axios from 'axios';
@@ -22,23 +22,22 @@ export const Thunks = {
         register: (user: User) => {
             return (dispatch: Dispatch) => {
                 dispatch(Actions.registrationRequest(user));
-                const config = {
-                    headers: {'Content-Type': 'application/json'},
-                    data: JSON.stringify({user})
-                };
-                let promise = axios.post('http://' + hostname + ':8080/api/auth/signup', config);
-                promise.then(Thunks.handleResponse)
-                    .then(
-                        user => {
-                            dispatch(Actions.registrationSuccess());
-                            history.push('/login');
-                            alertThunks.success('Registration successful');
-                        },
-                        error => {
-                            dispatch(Actions.registrationFailure());
-                            alertThunks.error(error);
-                        }
-                    );
+                let promise = axios.post('http://' + hostname + ':8080/api/auth/signup', user);
+                promise.then(
+                    response => {
+                        dispatch(Actions.registrationSuccess());
+                        history.push('/login');
+                        const {data} = response;
+                        dispatch(alertActions.success(data.message));
+                    },
+                    error => {
+                        dispatch(Actions.registrationFailure());
+                        const description: string = error.message || 'Sorry! Something went wrong. Please try again!';
+                        dispatch(alertActions.error(description));
+                        authenticationThunks.logout();
+                        location.reload();
+                    }
+                );
                 dispatch(alertActions.clearAlerts());
             }
         },

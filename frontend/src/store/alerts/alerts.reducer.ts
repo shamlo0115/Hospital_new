@@ -1,4 +1,4 @@
-import * as appActions from '@store/alerts/alerts.actions';
+import * as alertActions from '@store/alerts/alerts.actions';
 import {AlertItem} from "@models";
 
 export interface AlertState {
@@ -11,13 +11,31 @@ const initialState: AlertState = {
 
 export const alertsReducer = (
     state = initialState,
-    action: appActions.Actions
+    action: alertActions.Actions
 ): AlertState => {
     switch (action.type) {
-        case appActions.CLEAR:
+        case alertActions.CLEAR:
             return {
                 ...state,
                 alert: {}
+            };
+        case alertActions.ERROR:
+            console.log(' alertActions.ERROR action.payload', action.payload);
+            return {
+                ...state,
+                alert: {
+                    type: 'alert-danger',
+                    message: action.payload,
+                }
+            };
+        case alertActions.SUCCESS:
+            console.log(' alertActions.SUCCESS action.payload', action.payload);
+            return {
+                ...state,
+                alert: {
+                    type: 'alert-success',
+                    message: action.payload,
+                }
             };
         default:
             return state;
