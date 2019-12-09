@@ -1,4 +1,4 @@
-import * as registrationActions from '@store/registration/registration.actions';
+import * as registrationActions from './registration.actions';
 
 export interface RegistrationState {
     registering: boolean;

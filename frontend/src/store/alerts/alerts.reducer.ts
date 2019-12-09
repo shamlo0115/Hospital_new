@@ -1,5 +1,5 @@
-import * as alertActions from '@store/alerts/alerts.actions';
-import {AlertItem} from '@models';
+import * as alertActions from './alerts.actions';
+import {AlertItem} from '../../models/alert/AlertItem';
 
 export interface AlertState {
     alert: AlertItem;

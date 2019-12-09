@@ -1,6 +1,6 @@
-import {ActionsUnion, createAction} from '@store/actions-helpers';
 import {Dispatch} from 'redux';
 import axios from 'axios';
+import {ActionsUnion, createAction} from '../actions-helpers';
 
 export const LOGIN_REQUEST = '[AUTHENTICATION] LOGIN_REQUEST';
 export const LOGOUT_REQUEST = '[AUTHENTICATION] LOGOUT_REQUEST';
@@ -42,7 +42,7 @@ export const Thunks = {
                 if (response.status === 401) {
                     // auto logout if 401 response returned from api
                     Thunks.logout();
-                    location.reload();
+                    window.location.reload();
                 }
 
                 const error = (data && data.message) || response.statusText;

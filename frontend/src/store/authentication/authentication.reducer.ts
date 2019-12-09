@@ -1,4 +1,4 @@
-import * as authenticationActions from '@store/authentication/authentication.actions';
+import * as authenticationActions from './authentication.actions';
 
 export interface AuthenticationState {
     loggingIn: boolean;

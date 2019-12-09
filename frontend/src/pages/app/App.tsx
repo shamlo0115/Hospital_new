@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import {Redirect, Route, Router, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getAlert, Thunks as appThunks} from '@store/alerts';
 
-import {DispatchThunk, history, RootState} from '@store';
-import {AlertItem} from '@models';
-import {PrivateRoute} from '../shared';
 import {HomePage} from '../home/Home';
 import {LoginPage} from '../user/LoginPage';
 import {RegisterPage} from '../user/RegisterPage';
+import {getAlert} from '../../store/alerts/alerts.selectors';
+import {Thunks as appThunks} from '../../store/alerts/alerts.actions';
+import {AlertItem} from '../../models/alert/AlertItem';
+import {PrivateRoute} from '../shared/PrivateRoute';
+import {DispatchThunk, RootState} from '../../store/state.types';
+import {history} from '../../store/history';
 
 interface Props {
     alert?: AlertItem;
