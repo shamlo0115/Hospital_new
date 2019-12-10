@@ -22,13 +22,14 @@ export const Thunks = {
         register: (user: User) => {
             return (dispatch: Dispatch) => {
                 dispatch(Actions.registrationRequest(user));
-                const promise = axios.post(`http://${hostname}:8080/api/auth/signup`, user);
+                const promise = axios.post('http://' + hostname + ':8080/api/auth/signup', user);
                 promise.then(
                     response => {
                         dispatch(Actions.registrationSuccess());
                         history.push('/login');
                         const {data} = response;
                         dispatch(alertActions.success(data.message));
+                        history.push('/');
                     },
                     error => {
                         dispatch(Actions.registrationFailure());
