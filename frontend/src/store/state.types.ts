@@ -8,7 +8,7 @@ import {RegistrationState} from './registration/registration.reducer';
 export interface RootState {
     alert: AlertState;
     auth: AuthenticationState;
-    registration: RegistrationState;
+    registration: RegistrationState
 }
 
 export type DispatchThunk = ThunkDispatch<RootState, void, Action>;

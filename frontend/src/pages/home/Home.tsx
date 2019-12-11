@@ -8,6 +8,9 @@ const HomePageComponent: FunctionComponent<Props> = () => {
     return (
         <div className="col-md-6 col-md-offset-3">
             qwe
+            <button>
+                Kek
+            </button>
         </div>
     );
 

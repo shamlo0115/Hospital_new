@@ -27,7 +27,7 @@ export const Thunks = {
         return (dispatch: Dispatch) => {
             dispatch(Actions.error(message));
         };
-    },
+    }
 };
 
 export type Actions = ActionsUnion<typeof Actions>;
