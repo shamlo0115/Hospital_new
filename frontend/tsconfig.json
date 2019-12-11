@@ -9,7 +9,7 @@
     "noUnusedLocals": false,
     "strict": true,
     "strictFunctionTypes": false,
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es5",
     "importHelpers": true,
     "esModuleInterop": true,
@@ -20,14 +20,17 @@
       "dom"
     ],
     "jsx": "react",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "paths": {
+      "@store/*": [
+        "store/*"
+      ],
+      "@store": [
+        "store/index"
+      ],
+      "@models": [
+        "models/index"
+      ]
+    }
   },
   "include": [
     "./src/**/*",

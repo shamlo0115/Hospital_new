@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {DispatchThunk, RootState} from '../../store/state.types';
-import {getLoggingIn} from '../../store/authentication/authentication.selectors';
-import {Thunks as authenticationThunks} from '../../store/authentication/authentication.actions';
+import {DispatchThunk, RootState} from '@store';
+import {getLoggingIn, Thunks as authenticationThunks} from '@store/authentication';
+
 
 interface Props {
     logout: any;

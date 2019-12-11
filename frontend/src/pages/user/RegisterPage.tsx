@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {User} from '../../models/user/User';
-import {DispatchThunk, RootState} from '../../store/state.types';
-import {getRegistering} from '../../store/registration/registration.selectors';
-import {Thunks} from '../../store/registration/registration.actions';
+import {User} from '@models';
+import {DispatchThunk, RootState} from '@store';
+import {getRegistering, Thunks as registrationThunks} from '@store/registration';
+
 
 interface Props {
     register: any;
@@ -150,7 +150,7 @@ const mapStateToProps = (state: RootState) => {
 };
 const mapDispatchToProps = (dispatch: DispatchThunk) => ({
     register: (user) => {
-        dispatch(Thunks.register(user));
+        dispatch(registrationThunks.register(user));
     },
 });
 
