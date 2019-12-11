@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/hollywood?createDatabaseIfNotExist=true
+    url: jdbc:postgresql://localhost:5432/hollywood
     username: postgres
-    password: 123
+    password: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
