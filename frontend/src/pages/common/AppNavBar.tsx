@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
@@ -17,7 +17,7 @@ class AppNavBarComponent extends React.Component<Props, State> {
     toggle = () => {
         this.setState({
             open: !this.state.open
-        })
+        });
         console.log('state', this.state);
     };
 

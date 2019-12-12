@@ -3,10 +3,7 @@ package io.privalou.controller;
 import io.privalou.dao.DoctorRepository;
 import io.privalou.domain.Doctor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,12 @@ public class DoctorsController {
     @GetMapping("/")
     public ResponseEntity<List<Doctor>> getAll() {
         return ResponseEntity.ok(doctorRepository.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Doctor> getDoctor(
+            int id
+    ) {
+        return ResponseEntity.ok(doctorRepository.getOne(id));
     }
 }

@@ -48,7 +48,7 @@ class DoctorsListComponent extends React.Component<Props, State> {
                         <Button
                             color="success"
                             tag={Link}
-                            to="/actors/new "
+                            to="/doctors/new "
                         >
                             Add Doctor
                         </Button>

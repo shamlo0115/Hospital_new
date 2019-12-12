@@ -1,18 +1,18 @@
-import * as doctorsActions from "@store/doctors/doctors.actions";
-import {START_FETCHING_DOCTORS} from "@store/doctors/doctors.actions";
+import * as doctorsActions from '@store/doctors/doctors.actions';
+import {Doctor} from '../../models/doctor/Doctor';
 
 export interface DoctorsState {
-    doctors: [];
-    newActor: {};
-    chosenActor: {};
+    doctors: Doctor[];
+    newDoctor: any;
+    chosenDoctor: any;
     isLoading: boolean;
     canDelete: boolean;
 }
 
 const initialState: DoctorsState = {
     doctors: [],
-    newActor: {},
-    chosenActor: {},
+    newDoctor: {},
+    chosenDoctor: {},
     isLoading: false,
     canDelete: false,
 };
@@ -29,6 +29,38 @@ export const doctorsReducer = (
                 ...state,
                 doctors: action.payload,
                 isLoading: false,
+            };
+        case doctorsActions.START_FETCHING_DOCTOR:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case doctorsActions.FINISH_FETCHING_DOCTOR:
+            const doctor = action.payload;
+            return {
+                ...state,
+                chosenDoctor: doctor,
+                isLoading: false,
+            };
+        case doctorsActions.CREATE_DOCTOR:
+            return {...state};
+        case doctorsActions.UPDATE_DOCTOR:
+            return {
+                ...state,
+                chosenDoctor: initialState.chosenDoctor,
+                doctors: state.doctors.map(
+                    doctor =>
+                        doctor.id === action.payload.id ?
+                            action.payload : doctor
+                )
+            };
+        case doctorsActions.DELETE_DOCTOR:
+            return {
+                ...state,
+                doctors: state.doctors.filter(
+                    actor =>
+                        actor.id !== action.payload
+                ),
             };
         default:
             return state;

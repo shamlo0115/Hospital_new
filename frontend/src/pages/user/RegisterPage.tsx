@@ -5,7 +5,6 @@ import {User} from '@models';
 import {DispatchThunk, RootState} from '@store';
 import {getRegistering, Thunks as registrationThunks} from '@store/registration';
 
-
 interface Props {
     register: any;
     registering: any;

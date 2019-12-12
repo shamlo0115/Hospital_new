@@ -1,8 +1,8 @@
 import React from 'react';
-import {DispatchThunk, RootState} from "@store";
-import {Thunks as authenticationThunks} from "@store/authentication";
+import {DispatchThunk, RootState} from '@store';
+import {Thunks as authenticationThunks} from '@store/authentication';
 import {connect} from 'react-redux';
-import {AppNavBar} from "../common/AppNavBar";
+import {AppNavBar} from '../common/AppNavBar';
 import {Link} from 'react-router-dom';
 import {Button, Container} from 'reactstrap';
 
@@ -19,7 +19,6 @@ class HomePageComponent extends React.Component<Props, State> {
         e.preventDefault();
         this.props.logout();
     };
-
 
     render() {
         return (
@@ -63,7 +62,6 @@ class HomePageComponent extends React.Component<Props, State> {
         );
     }
 }
-
 
 const mapStateToProps = (state: RootState) => {
     return {};

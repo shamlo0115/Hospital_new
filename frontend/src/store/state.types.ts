@@ -4,7 +4,7 @@ import {Action} from 'redux';
 import {AlertState} from './alerts/alerts.reducer';
 import {AuthenticationState} from './authentication/authentication.reducer';
 import {RegistrationState} from './registration/registration.reducer';
-import {DoctorsState} from "@store/doctors";
+import {DoctorsState} from '@store/doctors';
 
 export interface RootState {
     alert: AlertState;

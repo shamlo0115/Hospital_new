@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {DispatchThunk, RootState} from '@store';
 import {getLoggingIn, Thunks as authenticationThunks} from '@store/authentication';
 
-
 interface Props {
     logout: any;
     login: any;

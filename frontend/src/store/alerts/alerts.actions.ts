@@ -1,7 +1,6 @@
 import {Dispatch} from 'redux';
 import {ActionsUnion, createAction} from '../actions-helpers';
 
-
 export const CLEAR = '[APP] CLEAR';
 export const ERROR = '[APP] ERROR';
 export const SUCCESS = '[APP] SUCCESS';
