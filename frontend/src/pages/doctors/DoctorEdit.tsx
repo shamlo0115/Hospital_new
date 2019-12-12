@@ -35,6 +35,7 @@ class DoctorEditComponent extends React.Component<Props, State> {
     };
 
     componentDidMount() {
+        console.log('this props', this.props);
         if (this.props.match.params.id !== 'new') {
             this.props.onGetDoctor(this.props.match.params.id);
         }
