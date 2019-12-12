@@ -1,10 +1,10 @@
-import {ActionsUnion, createAction} from '@store/actions-helpers';
 import {Dispatch} from 'redux';
-import {User} from '@models';
-import {Actions as alertActions} from '@store/alerts';
-import {Thunks as authenticationThunks} from '@store/authentication';
-import {history} from '@store';
+import {Actions as alertActions} from '../alerts/alerts.actions';
+import {Thunks as authenticationThunks} from '../authentication/authentication.actions';
 import axios from 'axios';
+import {history} from '../history';
+import {User} from '../../models/user/User';
+import {ActionsUnion, createAction} from '../actions-helpers';
 
 export const REGISTRATION_REQUEST = '[REGISTRATION] REGISTER_REQUEST';
 export const REGISTER_SUCCESS = '[REGISTRATION] USERS_REGISTER_SUCCESS';
@@ -22,7 +22,7 @@ export const Thunks = {
         register: (user: User) => {
             return (dispatch: Dispatch) => {
                 dispatch(Actions.registrationRequest(user));
-                const promise = axios.post('http://' + hostname + ':8080/api/auth/signup', user);
+                let promise = axios.post('http://' + hostname + ':8080/api/auth/signup', user);
                 promise.then(
                     response => {
                         dispatch(Actions.registrationSuccess());
@@ -36,7 +36,7 @@ export const Thunks = {
                         const description: string = error.message || 'Sorry! Something went wrong. Please try again!';
                         dispatch(alertActions.error(description));
                         authenticationThunks.logout();
-                        location.reload();
+                        window.location.reload();
                     }
                 );
                 dispatch(alertActions.clearAlerts());
@@ -49,14 +49,14 @@ export const Thunks = {
                 if (!response.ok) {
                     if (response.status === 401) {
                         authenticationThunks.logout();
-                        location.reload();
+                        window.location.reload();
                     }
                     const error = (data && data.message) || response.statusText;
                     return Promise.reject(error);
                 }
                 return data;
             });
-        },
+        }
     }
 ;
 

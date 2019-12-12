@@ -1,4 +1,4 @@
-import * as registrationActions from '@store/registration/registration.actions';
+import * as registrationActions from './registration.actions';
 
 export interface RegistrationState {
     registering: boolean;
@@ -21,12 +21,12 @@ export const registrationReducer = (
         case registrationActions.REGISTER_SUCCESS:
             return {
                 ...state,
-                registering: false,
+                registering: false
             };
         case registrationActions.REGISTER_FAILURE:
             return {
                 ...state,
-                registering: false,
+                registering: false
             };
         default:
             return state;

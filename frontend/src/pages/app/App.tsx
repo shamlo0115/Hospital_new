@@ -9,9 +9,10 @@ import {PrivateRoute} from '../shared';
 import {HomePage} from '../home/Home';
 import {LoginPage} from '../user/LoginPage';
 import {RegisterPage} from '../user/RegisterPage';
+import {DoctorsList} from "../doctors/DoctorList";
 
 interface Props {
-    alert?: AlertItem;
+    alert?: AlertItem
     clearAlerts: any;
 }
 
@@ -20,8 +21,9 @@ interface State {
 }
 
 class AppComponent extends Component<Props, State> {
-    constructor(props: Props) {
+    constructor(props) {
         super(props);
+
         history.listen(() => {
             this.props.clearAlerts();
         });
@@ -41,24 +43,11 @@ class AppComponent extends Component<Props, State> {
                         }
                         <Router history={history}>
                             <Switch>
-                                <Route
-                                    exact={true}
-                                    path="/login"
-                                    component={LoginPage}
-                                />
-                                <PrivateRoute
-                                    exact={true}
-                                    path="/"
-                                    component={HomePage}
-                                />
-                                <Route
-                                    path="/register"
-                                    component={RegisterPage}
-                                />
-                                <Redirect
-                                    from="*"
-                                    to="/"
-                                />
+                                <PrivateRoute exact path="/" component={HomePage}/>
+                                <PrivateRoute exact path="/doctors" component={DoctorsList}/>
+                                <Route path="/login" component={LoginPage}/>
+                                <Route path="/register" component={RegisterPage}/>
+                                <Redirect from="*" to="/"/>
                             </Switch>
                         </Router>
                     </div>
@@ -69,13 +58,13 @@ class AppComponent extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    alert: getAlert(state),
+    alert: getAlert(state)
 });
 
 const mapDispatchToProps = (dispatch: DispatchThunk) => ({
     clearAlerts: () => {
         dispatch(appThunks.clearAlerts());
-    },
+    }
 });
 
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
