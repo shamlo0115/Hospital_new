@@ -1,8 +1,8 @@
 import {combineReducers, Reducer} from 'redux';
-import {alertsReducer} from '@store/alerts';
-import {RootState} from '@store/state.types';
-import {authenticationReducer} from '@store/authentication';
-import {registrationReducer} from '@store/registration';
+import {RootState} from './state.types';
+import {alertsReducer} from './alerts/alerts.reducer';
+import {authenticationReducer} from './authentication/authentication.reducer';
+import {registrationReducer} from './registration/registration.reducer';
 
 export const reducer: Reducer<RootState> = combineReducers<RootState>({
     alert: alertsReducer,

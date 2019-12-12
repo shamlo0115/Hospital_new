@@ -1,5 +1,6 @@
 import {createSelector} from 'reselect';
-import {RootState} from '@store/state.types';
+import {RootState} from '../state.types';
+
 
 export const getAlertState = (state: RootState) => state.alert;
 

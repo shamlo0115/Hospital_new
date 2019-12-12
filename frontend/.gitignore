@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-/node
 
 # testing
 /coverage
@@ -21,6 +20,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
 .idea
+/node
 *.iml

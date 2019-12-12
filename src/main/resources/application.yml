@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: dev
   datasource:
     url: jdbc:postgresql://localhost:5432/hollywood
     username: postgres
@@ -8,17 +6,14 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-logging:
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-  level:
-    org.springframework: ERROR
-    org.hibernate: ERROR
-
+  security:
+    user:
+      name: admin
+      password: admin
 jwt:
   secret: JWTSuperSecretKey
   expirationInMs: 604800000
