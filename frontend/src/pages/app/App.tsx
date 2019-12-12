@@ -9,6 +9,7 @@ import {PrivateRoute} from '../shared';
 import {HomePage} from '../home/Home';
 import {LoginPage} from '../user/LoginPage';
 import {RegisterPage} from '../user/RegisterPage';
+import {DoctorsList} from "../doctors/DoctorList";
 
 interface Props {
     alert?: AlertItem
@@ -43,6 +44,7 @@ class AppComponent extends Component<Props, State> {
                         <Router history={history}>
                             <Switch>
                                 <PrivateRoute exact path="/" component={HomePage}/>
+                                <PrivateRoute exact path="/doctors" component={DoctorsList}/>
                                 <Route path="/login" component={LoginPage}/>
                                 <Route path="/register" component={RegisterPage}/>
                                 <Redirect from="*" to="/"/>

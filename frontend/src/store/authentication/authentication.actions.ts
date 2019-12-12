@@ -26,7 +26,7 @@ export const Thunks = {
             });
             promise
                 .then((data: any) => {
-                    const element = `${data.data.tokenType}:${data.data.accessToken}`;
+                    const element = `${data.data.tokenType} ${data.data.accessToken}`;
                     localStorage.setItem('user', element);
                     dispatch(alertActions.success('Login successfully'));
                     history.push('/');
@@ -38,6 +38,7 @@ export const Thunks = {
         };
     },
     logout: () => {
+        history.push('/login');
         return (dispatch: Dispatch) => {
             dispatch(Actions.logoutRequest());
             localStorage.removeItem('user');
