@@ -38,8 +38,8 @@ class HomePageComponent extends React.Component<Props, State> {
                         </Link>
                     </Button>
                     <Button color="link">
-                        <Link to="/people">
-                            Manage people
+                        <Link to="/persons">
+                            Manage persons
                         </Link>
                     </Button>
                     <Button color="link">
