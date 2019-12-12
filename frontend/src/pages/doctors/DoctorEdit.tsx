@@ -5,7 +5,7 @@ import {Doctor} from '../../models/doctor/Doctor';
 import {AppNavBar} from '../common/AppNavBar';
 import {connect} from 'react-redux';
 import {DispatchThunk} from '@store';
-import {getDoctors, isLoading, Thunks as doctorsThunks} from '@store/doctors';
+import {getChosenDoctor, getDoctors, isLoading, Thunks as doctorsThunks} from '@store/doctors';
 
 interface Props {
     match: any;
@@ -14,6 +14,7 @@ interface Props {
     onGetDoctor: any;
     onEditDoctor: any;
     onCreateDoctor: any;
+    chosenDoctor: any;
 }
 
 interface State {
@@ -38,6 +39,7 @@ class DoctorEditComponent extends React.Component<Props, State> {
         console.log('this props', this.props);
         if (this.props.match.params.id !== 'new') {
             this.props.onGetDoctor(this.props.match.params.id);
+            console.log('got doctor', this.props);
         }
     }
 
@@ -64,8 +66,8 @@ class DoctorEditComponent extends React.Component<Props, State> {
         if (this.props.doctors.isLoading) {
             return (<p>Loading</p>);
         }
-        this.doctor = this.state.doctor.id || this.props.doctors.chosenDoctor ?
-            this.props.doctors.chosenDoctor : this.state.doctor;
+        this.doctor = this.state.doctor.id || this.props.chosenDoctor ?
+            this.props.chosenDoctor : this.state.doctor;
         const title = <h2>{this.doctor.id ? 'Edit Doctor' : 'Add Doctor'}</h2>;
         return (
             <div>
@@ -79,7 +81,7 @@ class DoctorEditComponent extends React.Component<Props, State> {
                                 type="text"
                                 name="fullName"
                                 id="fullName"
-                                value={this.doctor.name || ''}
+                                value={this.doctor.fullName || ''}
                                 onChange={
                                     (evt) => this.handleChange(evt)
                                 }
@@ -87,10 +89,10 @@ class DoctorEditComponent extends React.Component<Props, State> {
                             />
                             <Label for="career">Career</Label>
                             <Input
-                                type="number"
+                                type="text"
                                 name="career"
                                 id="career"
-                                value={this.doctor.career || 0}
+                                value={this.doctor.career || ''}
                                 onChange={
                                     (evt) => this.handleChange(evt)
                                 }
@@ -145,6 +147,7 @@ const mapStateToProps = (state) => {
     return {
         isLoading: isLoading(state),
         doctors: getDoctors(state),
+        chosenDoctor: getChosenDoctor(state),
     };
 };
 

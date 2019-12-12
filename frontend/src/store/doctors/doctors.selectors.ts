@@ -12,3 +12,9 @@ export const getDoctors = createSelector(
     getDoctorsState,
     state => state.doctors,
 );
+
+
+export const getChosenDoctor = createSelector(
+    getDoctorsState,
+    state => state.chosenDoctor,
+);

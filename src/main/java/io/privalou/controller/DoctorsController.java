@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -25,8 +26,12 @@ public class DoctorsController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Doctor> getDoctor(
-            int id
+            @PathVariable(name = "id") Integer id
     ) {
-        return ResponseEntity.ok(doctorRepository.getOne(id));
+        Optional<Doctor> optional = doctorRepository.findById(id);
+        if (optional.isPresent()) {
+            return ResponseEntity.ok(optional.get());
+        }
+        return ResponseEntity.notFound().build();
     }
 }

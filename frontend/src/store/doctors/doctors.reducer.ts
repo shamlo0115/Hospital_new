@@ -37,6 +37,7 @@ export const doctorsReducer = (
             };
         case doctorsActions.FINISH_FETCHING_DOCTOR:
             const doctor = action.payload;
+            console.log('doctor', doctor);
             return {
                 ...state,
                 chosenDoctor: doctor,

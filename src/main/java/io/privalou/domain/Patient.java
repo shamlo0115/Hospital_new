@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="hospitalization_date")
             private String hospitalizationDate;
