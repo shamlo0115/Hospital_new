@@ -64,16 +64,19 @@ export const Thunks = {
     createDoctor: (doctor: Doctor) => {
         return (dipatch: Dispatch) => {
             dipatch(Actions.createDoctor(doctor));
+            axios.post(`${API_BASE_URL}/doctors/`, doctor, getConfig());
         };
     },
     updateDoctor: (doctor: Doctor) => {
         return (dipatch: Dispatch) => {
             dipatch(Actions.updateDoctor(doctor));
+            axios.post(`${API_BASE_URL}/doctors/update`, doctor, getConfig());
         };
     },
     deleteDoctor: (id: number) => {
         return (dipatch: Dispatch) => {
             dipatch(Actions.deleteDoctor(id));
+            axios.delete(`${API_BASE_URL}/doctors/${id}`, getConfig());
         };
     }
 };

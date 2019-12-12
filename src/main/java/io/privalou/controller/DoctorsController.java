@@ -34,4 +34,27 @@ public class DoctorsController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @PostMapping
+    public ResponseEntity addDoctor(@RequestBody Doctor doctor) {
+        Doctor save = doctorRepository.save(doctor);
+        return save == null ? ResponseEntity.badRequest().build() : ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity updateDoctor(@RequestBody Doctor doctor) {
+        Optional<Doctor> optional = doctorRepository.findById(doctor.getId());
+        if (optional.isPresent()) {
+            doctorRepository.save(doctor);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteDoctor(@PathVariable(name = "id") Integer id) {
+        this.doctorRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }

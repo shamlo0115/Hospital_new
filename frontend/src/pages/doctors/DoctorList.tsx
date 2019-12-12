@@ -10,6 +10,7 @@ interface Props {
     getDoctors: any;
     doctors: any;
     isLoading: boolean;
+    deleteDoctor: any
 }
 
 interface State {
@@ -32,8 +33,20 @@ class DoctorsListComponent extends React.Component<Props, State> {
                     <td style={{whiteSpace: 'nowrap'}}>{doctor.cellPhone}</td>
                     <td>
                         <ButtonGroup>
-                            <Button size="sm" color="primary" tag={Link} to={'/doctors/' + doctor.id}>Edit</Button>
-                            <Button size="sm" color="danger">Delete</Button>
+                            <Button
+                                size="sm"
+                                color="primary"
+                                tag={Link}
+                                to={'/doctors/' + doctor.id}
+                            >
+                                Edit
+                            </Button>
+                            <Button size="sm"
+                                    color="danger"
+                                    onClick={() => this.props.deleteDoctor(doctor.id)}
+                            >
+                                Delete
+                            </Button>
                         </ButtonGroup>
                     </td>
                 </tr>
@@ -83,6 +96,9 @@ const mapStateToProps = (state: RootState) => {
 const mapDispatchToProps = (dispatch: DispatchThunk) => ({
     getDoctors: () => {
         dispatch(doctorsThunks.getDoctors());
+    },
+    deleteDoctor: (id: number) => {
+        dispatch(doctorsThunks.deleteDoctor(id))
     }
 });
 
