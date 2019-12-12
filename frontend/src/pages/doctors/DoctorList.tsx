@@ -1,9 +1,9 @@
-import React from "react";
-import {AppNavBar} from "../common/AppNavBar";
-import {Button, Container, Table} from 'reactstrap';
+import React from 'react';
+import {AppNavBar} from '../common/AppNavBar';
+import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import {Link} from 'react-router-dom';
-import {DispatchThunk, RootState} from "@store";
-import {getDoctors, isLoading, Thunks as doctorsThunks} from "@store/doctors";
+import {DispatchThunk, RootState} from '@store';
+import {getDoctors, isLoading, Thunks as doctorsThunks} from '@store/doctors';
 import {connect} from 'react-redux';
 
 interface Props {
@@ -21,9 +21,25 @@ class DoctorsListComponent extends React.Component<Props, State> {
         this.props.getDoctors();
     }
 
-
     render() {
-        console.log('this.props', this.props.doctors);
+        const doctorsList = this.props.doctors.map(doctor => {
+            return (
+                <tr key={doctor.id}>
+                    <td style={{whiteSpace: 'nowrap'}}>{doctor.fullName}</td>
+                    <td style={{whiteSpace: 'nowrap'}}>{doctor.career}</td>
+                    <td style={{whiteSpace: 'nowrap'}}>{doctor.experience}</td>
+                    <td style={{whiteSpace: 'nowrap'}}>{doctor.workingNumber}</td>
+                    <td style={{whiteSpace: 'nowrap'}}>{doctor.cellPhone}</td>
+                    <td>
+                        <ButtonGroup>
+                            <Button size="sm" color="primary" tag={Link} to={'/doctors/' + doctor.id}>Edit</Button>
+                            <Button size="sm" color="danger">Delete</Button>
+                        </ButtonGroup>
+                    </td>
+                </tr>
+            );
+        });
+
         return (
             <div>
                 <AppNavBar/>
@@ -38,13 +54,20 @@ class DoctorsListComponent extends React.Component<Props, State> {
                         </Button>
                     </div>
                     <h3>Doctors</h3>
-                    <div className="row">
-                        <div className="col-2"></div>
-                        <div className="col-2"></div>
-                        <div className="col-2"></div>
-                        <div className="col-2"></div>
-                        <div className="col-2"></div>
-                    </div>
+                    <Table className="mt-4">
+                        <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Career</th>
+                            <th>Experience</th>
+                            <th>Working number</th>
+                            <th>Cell phone</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {doctorsList}
+                        </tbody>
+                    </Table>
                 </Container>
             </div>
         );
