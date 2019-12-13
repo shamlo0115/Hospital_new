@@ -57,7 +57,7 @@ public class DataFiller implements ApplicationRunner {
                 .mapToObj(element -> {
                     Doctor doctor = new Doctor();
                     doctor.setFullName("Doctor #" + element);
-                    doctor.setCareer("Career #" + element);
+                    doctor.setCareer("postgresCareer #" + element);
                     doctor.setExperience(random.nextInt(80));
                     doctor.setWorkingNumber("random-number" + random.nextInt(80));
                     doctor.setCellPhone(88005553535L);
@@ -65,7 +65,7 @@ public class DataFiller implements ApplicationRunner {
                 })
                 .collect(Collectors.toList());
 
-        List<Doctor> persistedDoctors = doctorRepository.saveAll(doctors);
+        doctorRepository.saveAll(doctors);
 
         List<Person> people = IntStream.range(0, 50)
                 .mapToObj(element -> {
@@ -79,74 +79,45 @@ public class DataFiller implements ApplicationRunner {
                     return person;
                 })
                 .collect(Collectors.toList());
+
         personRepository.saveAll(people);
 
-//        List<Director> directors = IntStream.range(0, 50)
-//                .mapToObj(element -> {
-//                    Director director = new Director();
-//                    director.setName("Director #" + element);
-//                    return director;
-//                })
-//                .collect(Collectors.toList());
-//
-//        directors.forEach(
-//                directorRepository::save
-//        );
-//
-//        List<Cinematographer> cinematographers = IntStream.range(0, 50)
-//                .mapToObj(element -> {
-//                    Cinematographer cinematographer = new Cinematographer();
-//                    cinematographer.setName("Cinematographer #" + element);
-//                    return cinematographer;
-//                })
-//                .collect(Collectors.toList());
-//
-//
-//        cinematographers.forEach(
-//                cinematographerRepository::save
-//        );
-//
-//        List<Actor> actors = IntStream.range(0, 50)
-//                .mapToObj(element -> {
-//                    Actor actor = new Actor();
-//                    actor.setName("Actor #" + element);
-//                    actor.setAge(random.nextInt(90));
-//                    return actor;
-//                })
-//                .collect(Collectors.toList());
-//
-//        actors.forEach(
-//                actorRepository::save
-//        );
-//
-//        List<Cinema> cinemas = IntStream.range(0, 500)
-//                .mapToObj(element -> {
-//                    Cinema cinema = new Cinema();
-//                    cinema.setName("Cinema #" + element);
-//                    cinema.setLanguage("English");
-//                    cinema.setDirector(directors.get(random.nextInt(49)));
-//                    cinema.setCinematographer(cinematographers.get(random.nextInt(49)));
-//                    cinema.setRunningTime(random.nextInt(240));
-//                    return cinema;
-//                }).collect(Collectors.toList());
-//
-//        cinemas.forEach(
-//                cinemaRepository::save
-//        );
-//
-//        List<Role> roles = IntStream.range(0, 50)
-//                .mapToObj(element -> {
-//                    Role role = new Role();
-//                    role.setName("Role #" + element);
-//                    role.setCinema(cinemas.get(random.nextInt(499)));
-//                    role.setActor(actors.get(random.nextInt(49)));
-//                    return role;
-//                })
-//                .collect(Collectors.toList());
-//
-//        roles.forEach(
-//                roleRepository::save
-//        );
+        List<Medicine> medicineList = IntStream.range(0, 50)
+                .mapToObj(element -> {
+                    Medicine medicine = new Medicine();
+                    medicine.setContr("Contr # " + element);
+                    medicine.setName("Medicine name #" + element);
+                    medicine.setRate("Rate #" + element);
+                    return medicine;
+                })
+                .collect(Collectors.toList());
+
+        medicineRepository.saveAll(medicineList);
+
+        List<Patient> patients = IntStream.range(0, 50)
+                .mapToObj(element -> {
+                    Patient patient = new Patient();
+                    patient.setHealthState("Almost dead");
+                    patient.setHospitalizationDate("31.12.1990");
+                    patient.setPerson(people.get(element));
+                    patient.setIllness("SLE");
+                    return patient;
+                })
+                .collect(Collectors.toList());
+        patientRepository.saveAll(patients);
+
+        List<Prescription> prescriptions = IntStream.range(0, 50)
+                .mapToObj(element -> {
+                    Prescription prescription = new Prescription();
+                    prescription.setDescription("Description #" + element);
+                    prescription.setMedicine(medicineList.get(element));
+                    prescription.setPatient(patients.get(element));
+                    prescription.setVolume(random.nextInt(500));
+                    return prescription;
+                })
+                .collect(Collectors.toList());
+
+        prescriptionRepository.saveAll(prescriptions);
 
         UserRole admin = new UserRole();
         admin.setName(UserRoleType.ROLE_ADMIN);

@@ -1,13 +1,15 @@
 package io.sokolov.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
 @Table
-public class Person {
+public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,6 +32,7 @@ public class Person {
     @Column(name = "cell_phone")
     private Long cellPhone;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "person")
     private Patient patient;
 

@@ -5,6 +5,7 @@ import axios from 'axios';
 import {history} from '../history';
 import {User} from '../../models/user/User';
 import {ActionsUnion, createAction} from '../actions-helpers';
+import {API_BASE_URL} from "../../constants";
 
 export const REGISTRATION_REQUEST = '[REGISTRATION] REGISTER_REQUEST';
 export const REGISTER_SUCCESS = '[REGISTRATION] USERS_REGISTER_SUCCESS';
@@ -22,7 +23,7 @@ export const Thunks = {
         register: (user: User) => {
             return (dispatch: Dispatch) => {
                 dispatch(Actions.registrationRequest(user));
-                let promise = axios.post('http://' + hostname + ':8080/api/auth/signup', user);
+                let promise = axios.post('http://' + hostname + ':8080/api/auth/signin', user);
                 promise.then(
                     response => {
                         dispatch(Actions.registrationSuccess());
