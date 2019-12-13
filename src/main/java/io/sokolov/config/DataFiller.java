@@ -132,7 +132,7 @@ public class DataFiller implements ApplicationRunner {
         userRoles.add(user);
 
         User sokol = new User();
-        sokol.setUsername("sokolove");
+        sokol.setUsername("sokolov");
         // hashed pass 123123
         sokol.setPassword("$2a$10$qistJBEGilidVNFwUFumZuA8R4JZJ15e2kehLqq9D8uHhkrZMOo1a");
         sokol.setName("Ilya Sokolov");
